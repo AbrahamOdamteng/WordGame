@@ -6,6 +6,7 @@
 
     public class ValidWords : IValidWords
     {
+        //CODE-REVIEW:bad variable name. need something more descriptive
         ArrayList a = new ArrayList();
 
         public ValidWords()
@@ -14,6 +15,8 @@
             StreamReader reader = null;
             try
             {
+
+                //CODE-REVIEW: Use System.IO.File.ReadAllLines() instead of this.
                 stream = Assembly.GetAssembly(typeof(ValidWords)).GetManifestResourceStream("WordGame.wordlist.txt");
                 reader = new StreamReader(stream);
 
@@ -24,6 +27,7 @@
             }
             finally
             {
+                //CODE-REVIEW: This will not be needed if you use System.IO.File.ReadAllLines();
                 reader.Dispose();
                 stream.Dispose();
             }
